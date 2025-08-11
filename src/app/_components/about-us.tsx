@@ -95,7 +95,7 @@ export default function AboutUs() {
             <div className=" py-[120px] max-w-[1440px] mx-auto xs:px-10 lg:px-0">
                 <div
                     ref={headerRef}
-                    className="flex xs:flex-col lg:flex-row items-center gap-20 lg:px-10 2xl:px-20"
+                    className="flex xs:flex-col lg:flex-row items-start gap-20 lg:px-10 2xl:px-20"
                 >
                     <div className="lg:w-1/2 xs:w-full flex flex-col justify-center gap-1">
                         <div

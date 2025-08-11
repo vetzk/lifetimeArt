@@ -29,7 +29,7 @@ export default function Hero() {
             <div className="absolute 2xl:hidden inset-5">
                 <div className="w-full aspect-video px-5">
                     <Image
-                        src={"/assets/decor-hero.png"}
+                        src={"/assets/hero-mobile.png"}
                         alt="hero image"
                         fill
                         className="object-cover rounded-xl"
