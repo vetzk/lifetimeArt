@@ -29,7 +29,7 @@ const services = [
         icons: "/icons/icons-service-4.svg",
         image: "/assets/Extension.png",
         description:
-            "Expand your living space without compromising on style. Whether it’s a kitchen extension, a new family room, or an entire additional floor, we work closely with you to design and build an extension that complements your home and adds value.",
+            "Expand your living space without compromising on style. Whether it's a kitchen extension, a new family room, or an entire additional floor, we work closely with you to design and build an extension that complements your home and adds value.",
     },
     {
         name: "Restorations",
@@ -51,14 +51,21 @@ export default function Services() {
     const [activeService, setActiveService] = useState<number>(0);
     const [headerInView, setHeaderInView] = useState<boolean>(false);
     const [imageInView, setImageInView] = useState<boolean>(false);
-    const [imageKey, setImageKey] = useState<number>(0);
+    const [imageLoading, setImageLoading] = useState<boolean>(false);
 
     const headerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
 
     const toggleService = (index: number) => {
-        setActiveService(activeService === index ? 0 : index);
-        setImageKey((prev) => prev + 1);
+        if (activeService !== index) {
+            setImageLoading(true);
+            setActiveService(index);
+
+            // Reset loading state after animation completes
+            setTimeout(() => {
+                setImageLoading(false);
+            }, 500);
+        }
     };
 
     useEffect(() => {
@@ -88,10 +95,6 @@ export default function Services() {
             imageObserver.disconnect();
         };
     }, []);
-
-    useEffect(() => {
-        setImageKey((prev) => prev + 1);
-    }, [activeService]);
 
     return (
         <section className="w-full bg-[#FAFAFA]">
@@ -146,14 +149,17 @@ export default function Services() {
                         style={{ transitionDelay: "300ms" }}
                     >
                         <div
-                            className={`w-full h-full transition-all duration-500 rounded-[12px] ease-out`}
+                            className={`w-full h-full transition-all duration-700 ease-out rounded-[12px] ${
+                                imageLoading
+                                    ? "opacity-0 scale-95"
+                                    : "opacity-100 scale-100"
+                            }`}
                         >
                             <Image
-                                key={imageKey}
                                 src={services[activeService].image}
                                 alt="service-image"
                                 fill
-                                className="object-cover rounded-[12px]"
+                                className="object-cover rounded-[12px] transition-all duration-700 ease-out"
                             />
                         </div>
                     </div>
@@ -239,12 +245,6 @@ export default function Services() {
                         ))}
                     </div>
                 </div>
-
-                <style jsx>{`
-                    .animate-fadeInScale {
-                        animation: fadeInScale 0.6s ease-out;
-                    }
-                `}</style>
             </div>
         </section>
     );

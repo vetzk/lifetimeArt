@@ -227,7 +227,7 @@ export default function AboutUs() {
                 </div>
             </div>
 
-            <div className="max-w-[1440px] mx-auto py-[120px] xs:px-10 lg:px-0">
+            <div className="w-full max-w-[1440px] mx-auto py-[120px] xs:px-10 lg:px-0">
                 <div
                     ref={statsRef}
                     className="2xl:flex gap-[120px] 2xl:items-center grid xs:grid-cols-1 lg:grid-cols-2 2xl:px-20 lg:px-10"

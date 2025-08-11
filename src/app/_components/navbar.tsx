@@ -56,7 +56,7 @@ export default function Navbar() {
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
-            const navHeight = 80; // Approximate navbar height
+            const navHeight = 80;
             const elementPosition = element.offsetTop - navHeight;
 
             window.scrollTo({
@@ -65,7 +65,6 @@ export default function Navbar() {
             });
         }
 
-        // Close mobile menu if open
         if (isMobileMenuOpen) {
             setIsMobileMenuOpen(false);
         }
@@ -171,7 +170,6 @@ export default function Navbar() {
                 }`}
             >
                 <div className="flex justify-between items-center pt-[32px]">
-                    {/* Logo in mobile menu */}
                     <div
                         className={`flex items-center gap-[5px] transition-all duration-500 ease-out cursor-pointer ${
                             isMobileMenuOpen
@@ -196,8 +194,6 @@ export default function Navbar() {
                             LifetimeArt
                         </p>
                     </div>
-
-                    {/* Close button */}
                     <button
                         onClick={toggleMobileMenu}
                         className={`flex flex-col justify-center items-center w-8 h-8 transition-all duration-500 ease-out hover:scale-110 ${

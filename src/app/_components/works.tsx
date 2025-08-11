@@ -101,7 +101,7 @@ export default function Works() {
     }, []);
 
     return (
-        <section className="w-full flex flex-col gap-24 3xl:px-[260px] xs:py-[120px] xs:px-10 2xl:px-20 pt-[120px] max-w-[1440px] mx-auto">
+        <section className="w-full flex flex-col gap-24 xs:py-[120px] xs:px-10 xl:px-10 2xl:px-20 pt-[120px] max-w-[1440px] mx-auto">
             <div
                 ref={headerRef}
                 className="flex flex-col gap-4 justify-center items-center"

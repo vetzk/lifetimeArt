@@ -2,6 +2,19 @@ import React from "react";
 import Image from "next/image";
 
 export default function Footer() {
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const navHeight = 80;
+            const elementPosition = element.offsetTop - navHeight;
+
+            window.scrollTo({
+                top: elementPosition,
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <div className="mx-auto mt-4 max-w-[1440px] px-5">
             <div className="bg-black flex flex-col gap-10 rounded-tl-[12px] rounded-tr-[12px] 2xl:p-20 xs:px-5 xs:py-[60px]">
@@ -25,24 +38,44 @@ export default function Footer() {
                         </p>
                         <div className="flex text-[#D0D1DB] items-center gap-20">
                             <div className="flex flex-col gap-[13px]">
-                                <p className="text-[18px] tracking-[-0.1px] leading[-27px]">
+                                <p
+                                    onClick={() => scrollToSection("about")}
+                                    className="text-[18px] cursor-pointer tracking-[-0.1px] leading[-27px]"
+                                >
                                     About us
                                 </p>
-                                <p className="text-[18px] tracking-[-0.1px] leading[-27px]">
+                                <p
+                                    onClick={() => scrollToSection("works")}
+                                    className="text-[18px] cursor-pointer tracking-[-0.1px] leading[-27px]"
+                                >
                                     Our work
                                 </p>
-                                <p className="text-[18px] tracking-[-0.1px] leading[-27px]">
+                                <p
+                                    onClick={() => scrollToSection("services")}
+                                    className="text-[18px] cursor-pointer tracking-[-0.1px] leading[-27px]"
+                                >
                                     Services
                                 </p>
                             </div>
                             <div className="flex flex-col gap-[13px]">
-                                <p className="text-[18px] tracking-[-0.1px] leading[-27px]">
+                                <p
+                                    onClick={() =>
+                                        scrollToSection("testimonials")
+                                    }
+                                    className="text-[18px] cursor-pointer tracking-[-0.1px] leading[-27px]"
+                                >
                                     Testimonials
                                 </p>
-                                <p className="text-[18px] tracking-[-0.1px] leading[-27px]">
+                                <p
+                                    onClick={() => scrollToSection("faqs")}
+                                    className="text-[18px] cursor-pointer tracking-[-0.1px] leading[-27px]"
+                                >
                                     FAQs
                                 </p>
-                                <p className="text-[18px] tracking-[-0.1px] leading[-27px]">
+                                <p
+                                    onClick={() => scrollToSection("contact")}
+                                    className="text-[18px] cursor-pointer tracking-[-0.1px] leading[-27px]"
+                                >
                                     Contact
                                 </p>
                             </div>
