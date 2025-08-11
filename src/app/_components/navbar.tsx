@@ -1,0 +1,252 @@
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+
+const navMenu = [
+    { name: "About", id: "about" },
+    { name: "Services", id: "services" },
+    { name: "Our Work", id: "works" },
+    { name: "FAQs", id: "faqs" },
+    { name: "Contact", id: "contact" },
+];
+
+export default function Navbar() {
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    const [activeSection, setActiveSection] = useState<string>("");
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(true);
+        }, 10);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        const observers: IntersectionObserver[] = [];
+
+        navMenu.forEach(({ id }) => {
+            const element = document.getElementById(id);
+            if (element) {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setActiveSection(id);
+                        }
+                    },
+                    {
+                        threshold: 0.3,
+                        rootMargin: "-20% 0px -70% 0px",
+                    }
+                );
+                observer.observe(element);
+                observers.push(observer);
+            }
+        });
+
+        return () => {
+            observers.forEach((observer) => observer.disconnect());
+        };
+    }, []);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const navHeight = 80; // Approximate navbar height
+            const elementPosition = element.offsetTop - navHeight;
+
+            window.scrollTo({
+                top: elementPosition,
+                behavior: "smooth",
+            });
+        }
+
+        // Close mobile menu if open
+        if (isMobileMenuOpen) {
+            setIsMobileMenuOpen(false);
+        }
+    };
+
+    return (
+        <>
+            <div
+                className={`relative px-5 lg:px-10 2xl:px-20 py-6 lg:py-8 2xl:py-10 2xl:top-[1px] 2xl:bg-transparent bg-black/90 max-w-[1440px] mx-auto flex justify-between items-center transition-all duration-1000 ease-out ${
+                    isVisible
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 -translate-y-8"
+                }`}
+            >
+                <div
+                    className="flex items-center gap-[5px] cursor-pointer"
+                    onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                >
+                    <div className="relative">
+                        <Image
+                            src="/icons/Logo.svg"
+                            alt="logo"
+                            width={32}
+                            height={32}
+                        />
+                    </div>
+                    <p className="font-medium text-[23px] leading-[28px] tracking-[-0.4px] text-white">
+                        LifetimeArt
+                    </p>
+                </div>
+                <div className="hidden lg:flex items-center text-white gap-[30px]">
+                    {navMenu.map((item, i) => (
+                        <div
+                            key={i}
+                            className={`relative group cursor-pointer transition-all duration-700 ease-out ${
+                                isVisible
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-4"
+                            }`}
+                            style={{
+                                transitionDelay: `${200 + i * 100}ms`,
+                            }}
+                            onClick={() => scrollToSection(item.id)}
+                        >
+                            <p
+                                className={`relative font-medium transition-all duration-300 ease-out transform hover:scale-105 ${
+                                    activeSection === item.id
+                                        ? "text-white"
+                                        : "text-white/80 hover:text-white"
+                                }`}
+                            >
+                                {item.name}
+                                <span
+                                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-white to-white transition-all duration-300 ease-out ${
+                                        activeSection === item.id
+                                            ? "w-full"
+                                            : "w-0 group-hover:w-full"
+                                    }`}
+                                ></span>
+                                <span className="absolute inset-0 rounded opacity-0 bg-white/5 transition-opacity duration-300 group-hover:opacity-100 -mx-2 -my-1"></span>
+                            </p>
+                        </div>
+                    ))}
+                </div>
+                <button
+                    onClick={toggleMobileMenu}
+                    className={`lg:hidden flex flex-col justify-center items-center w-8 h-8 transition-all duration-300 ease-out hover:scale-110 ${
+                        isVisible
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-4"
+                    }`}
+                    style={{ transitionDelay: "200ms" }}
+                    aria-label="Toggle mobile menu"
+                >
+                    <span
+                        className={`block h-0.5 w-6 bg-white transition-all duration-300 ease-out ${
+                            isMobileMenuOpen
+                                ? "rotate-45 translate-y-1.5"
+                                : "translate-y-0"
+                        }`}
+                    ></span>
+                    <span
+                        className={`block h-0.5 w-6 bg-white transition-all duration-300 ease-out mt-1 ${
+                            isMobileMenuOpen ? "opacity-0" : "opacity-100"
+                        }`}
+                    ></span>
+                    <span
+                        className={`block h-0.5 w-6 bg-white transition-all duration-300 ease-out mt-1 ${
+                            isMobileMenuOpen
+                                ? "-rotate-45 -translate-y-1.5"
+                                : "translate-y-0"
+                        }`}
+                    ></span>
+                </button>
+            </div>
+            <div
+                className={`lg:hidden fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex flex-col gap-20 px-10 transition-all duration-500 ease-out ${
+                    isMobileMenuOpen
+                        ? "opacity-100 visible"
+                        : "opacity-0 invisible"
+                }`}
+            >
+                <div className="flex justify-between items-center pt-[32px]">
+                    {/* Logo in mobile menu */}
+                    <div
+                        className={`flex items-center gap-[5px] transition-all duration-500 ease-out cursor-pointer ${
+                            isMobileMenuOpen
+                                ? "opacity-100 translate-x-0"
+                                : "opacity-0 -translate-x-4"
+                        }`}
+                        style={{ transitionDelay: "200ms" }}
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                            setIsMobileMenuOpen(false);
+                        }}
+                    >
+                        <div className="relative">
+                            <Image
+                                src="/icons/Logo.svg"
+                                alt="logo"
+                                width={32}
+                                height={32}
+                            />
+                        </div>
+                        <p className="font-medium text-lg leading-[28px] tracking-[-0.4px] text-white">
+                            LifetimeArt
+                        </p>
+                    </div>
+
+                    {/* Close button */}
+                    <button
+                        onClick={toggleMobileMenu}
+                        className={`flex flex-col justify-center items-center w-8 h-8 transition-all duration-500 ease-out hover:scale-110 ${
+                            isMobileMenuOpen
+                                ? "opacity-100 rotate-0"
+                                : "opacity-0 rotate-180"
+                        }`}
+                        style={{ transitionDelay: "200ms" }}
+                        aria-label="Close mobile menu"
+                    >
+                        <span className="block h-0.5 w-6 bg-white rotate-45 translate-y-0.5"></span>
+                        <span className="block h-0.5 w-6 bg-white -rotate-45 -translate-y-0.5"></span>
+                    </button>
+                </div>
+                <div
+                    className={`flex flex-col items-start justify-start h-[calc(100%-80px)] space-y-8 transition-all duration-700 ease-out ${
+                        isMobileMenuOpen
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-8 opacity-0"
+                    }`}
+                >
+                    {navMenu.map((item, i) => (
+                        <div
+                            key={i}
+                            className={`transition-all duration-500 ease-out ${
+                                isMobileMenuOpen
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-4"
+                            }`}
+                            style={{
+                                transitionDelay: isMobileMenuOpen
+                                    ? `${300 + i * 100}ms`
+                                    : "0ms",
+                            }}
+                        >
+                            <p
+                                className={`text-2xl leading-[120%] tracking-[-1px] cursor-pointer transition-all duration-300 transform hover:scale-105 hover:translate-x-2 ${
+                                    activeSection === item.id
+                                        ? "text-white"
+                                        : "text-white/80 hover:text-white"
+                                }`}
+                                onClick={() => scrollToSection(item.id)}
+                            >
+                                {item.name}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
+}
