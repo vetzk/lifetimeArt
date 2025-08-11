@@ -111,8 +111,6 @@ export default function Hero() {
                         onMouseEnter={(e) => {
                             e.currentTarget.style.transform =
                                 "translateY(-4px)";
-                            e.currentTarget.style.boxShadow =
-                                "0 10px 25px rgba(255, 255, 255, 0.1)";
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = "translateY(0px)";
@@ -123,7 +121,7 @@ export default function Hero() {
                             <p className="text-white font-medium leading-[20.8px] group-hover:text-white transition-colors duration-300">
                                 Work with us
                             </p>
-                            <div className="rounded-full bg-white h-10 w-10 flex items-center justify-center group-hover:bg-gray-100 transition-all duration-300">
+                            <div className="rounded-full bg-white h-10 w-10 flex items-center justify-center  transition-all duration-300">
                                 <svg
                                     width="16"
                                     height="16"

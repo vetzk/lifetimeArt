@@ -16,7 +16,9 @@ export default function HomeContent() {
             <div className="fixed top-0 left-0 w-full z-50">
                 <Navbar />
             </div>
-            <Hero />
+            <div id="hero" className="scroll-smooth">
+                <Hero />
+            </div>
             <div id="about" className="scroll-smooth">
                 <AboutUs />
             </div>
