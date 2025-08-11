@@ -274,10 +274,6 @@ export default function AboutUs() {
                     animation: scroll 20s linear infinite;
                     width: ${(400 + 32) * 10}px;
                 }
-
-                .animate-scroll:hover {
-                    animation-play-state: paused;
-                }
             `}</style>
         </section>
     );

@@ -60,8 +60,6 @@ export default function Services() {
         if (activeService !== index) {
             setImageLoading(true);
             setActiveService(index);
-
-            // Reset loading state after animation completes
             setTimeout(() => {
                 setImageLoading(false);
             }, 500);
