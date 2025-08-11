@@ -37,7 +37,7 @@ export default function Hero() {
                     <div className="absolute 2xl:hidden inset-0 bg-black/80" />
                 </div>
             </div>
-            <div className="flex 2xl:justify-center xs:justify-start xs:items-end 2xl:items-center gap-20 max-w-[1440px] xs:px-5 2xl:px-20">
+            <div className="flex 2xl:justify-center mx-auto xs:justify-start xs:items-end 2xl:items-center gap-20 2xl:max-w-[1440px] xs:px-5 2xl:px-20">
                 <div className="xl:w-full 2xl:w-1/2 flex flex-col gap-14">
                     <div className="flex flex-col gap-6">
                         <div className="flex flex-col gap-1">

@@ -49,7 +49,7 @@ export default function Contact() {
 
     return (
         <section className="w-full 3xl:px-[260px]">
-            <div className="max-w-[1440px] px-5">
+            <div className="max-w-[1440px] mx-auto px-5">
                 <div className="flex flex-col lg:flex-row bg-black gap-[100px] 2xl:p-20 xs:px-5 xs:py-[60px] rounded-[12px]">
                     <div
                         ref={leftContentRef}

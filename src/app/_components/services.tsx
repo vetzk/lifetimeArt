@@ -94,156 +94,158 @@ export default function Services() {
     }, [activeService]);
 
     return (
-        <section className="w-full flex flex-col gap-24 bg-[#FAFAFA] 3xl:px-[260px] xs:px-10 2xl:px-20 py-[120px]">
-            <div
-                ref={headerRef}
-                className="flex flex-col gap-4 justify-center items-center"
-            >
-                <div className="flex flex-col gap-2 items-center">
-                    <div
-                        className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-800 ease-out ${
+        <section className="w-full bg-[#FAFAFA]">
+            <div className="flex flex-col gap-24 xs:px-10 2xl:px-20 py-[120px] max-w-[1440px] mx-auto">
+                <div
+                    ref={headerRef}
+                    className="flex flex-col gap-4 justify-center items-center"
+                >
+                    <div className="flex flex-col gap-2 items-center">
+                        <div
+                            className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-800 ease-out ${
+                                headerInView
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-4"
+                            }`}
+                            style={{ transitionDelay: "200ms" }}
+                        >
+                            <p className="font-semibold">Services</p>
+                        </div>
+                        <p
+                            className={`text-5xl font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-1000 ease-out ${
+                                headerInView
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-6"
+                            }`}
+                            style={{ transitionDelay: "400ms" }}
+                        >
+                            What we do
+                        </p>
+                    </div>
+                    <p
+                        className={`text-xl text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-800 ease-out ${
                             headerInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"
                         }`}
-                        style={{ transitionDelay: "200ms" }}
+                        style={{ transitionDelay: "600ms" }}
                     >
-                        <p className="font-semibold">Services</p>
-                    </div>
-                    <p
-                        className={`text-5xl font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-1000 ease-out ${
-                            headerInView
-                                ? "opacity-100 translate-y-0"
-                                : "opacity-0 translate-y-6"
-                        }`}
-                        style={{ transitionDelay: "400ms" }}
-                    >
-                        What we do
+                        Find out which one of our services fit the needs of your
+                        project
                     </p>
                 </div>
-                <p
-                    className={`text-xl text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-800 ease-out ${
-                        headerInView
-                            ? "opacity-100 translate-y-0"
-                            : "opacity-0 translate-y-4"
-                    }`}
-                    style={{ transitionDelay: "600ms" }}
-                >
-                    Find out which one of our services fit the needs of your
-                    project
-                </p>
-            </div>
 
-            <div className="flex lg:flex-row xs:flex-col items-center gap-20">
-                <div
-                    ref={imageRef}
-                    className={`lg:w-1/2 xs:w-full h-full relative aspect-[3/3.5] overflow-hidden transition-all duration-1000 ease-out ${
-                        imageInView
-                            ? "opacity-100 translate-y-0"
-                            : "opacity-0 translate-y-8"
-                    }`}
-                    style={{ transitionDelay: "300ms" }}
-                >
+                <div className="flex lg:flex-row xs:flex-col items-center gap-20">
                     <div
-                        className={`w-full h-full transition-all duration-500 rounded-[12px] ease-out`}
+                        ref={imageRef}
+                        className={`lg:w-1/2 xs:w-full h-full relative aspect-[3/3.5] overflow-hidden transition-all duration-1000 ease-out ${
+                            imageInView
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-8"
+                        }`}
+                        style={{ transitionDelay: "300ms" }}
                     >
-                        <Image
-                            key={imageKey}
-                            src={services[activeService].image}
-                            alt="service-image"
-                            fill
-                            className="object-cover rounded-[12px]"
-                        />
+                        <div
+                            className={`w-full h-full transition-all duration-500 rounded-[12px] ease-out`}
+                        >
+                            <Image
+                                key={imageKey}
+                                src={services[activeService].image}
+                                alt="service-image"
+                                fill
+                                className="object-cover rounded-[12px]"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col lg:w-1/2 w-full">
+                        {services.map((val, i) => (
+                            <div
+                                key={i}
+                                className="flex flex-col gap-5 border-b border-gray-200 last:border-b-0"
+                            >
+                                <div
+                                    className={`flex justify-between items-center py-5 cursor-pointer transition-all duration-300 px-2 rounded-lg group ${
+                                        activeService === i
+                                            ? "bg-gray-50/50"
+                                            : "hover:bg-gray-50/30"
+                                    }`}
+                                    onClick={() => toggleService(i)}
+                                >
+                                    <div className="flex gap-2.5 items-center">
+                                        <div className="relative aspect-square">
+                                            <Image
+                                                src={val.icons}
+                                                alt="icons-service"
+                                                width={40}
+                                                height={40}
+                                            />
+                                        </div>
+                                        <p
+                                            className={`text-xl font-medium leading-[120%] tracking-[-0.2px] transition-colors duration-300 ${
+                                                activeService === i
+                                                    ? "text-[#101014]"
+                                                    : "text-[#101014]/30 group-hover:text-[#000000]"
+                                            }`}
+                                        >
+                                            {val.name}
+                                        </p>
+                                    </div>
+                                    <div className="relative w-6 h-6 flex items-center justify-center">
+                                        <Plus
+                                            className={`absolute w-6 h-6 text-[#101014] transition-all duration-300 ease-in-out ${
+                                                activeService === i
+                                                    ? "rotate-45 opacity-0 scale-75"
+                                                    : "rotate-0 opacity-100 scale-100"
+                                            }`}
+                                        />
+                                        <X
+                                            className={`absolute w-6 h-6 text-[#101014] transition-all duration-300 ease-in-out ${
+                                                activeService === i
+                                                    ? "rotate-0 opacity-100 scale-100"
+                                                    : "rotate-45 opacity-0 scale-75"
+                                            }`}
+                                        />
+                                    </div>
+                                </div>
+                                <div
+                                    className={`px-2 overflow-hidden transition-all duration-500 ease-in-out ${
+                                        activeService === i
+                                            ? "opacity-100"
+                                            : "max-h-0 opacity-0"
+                                    }`}
+                                >
+                                    <div
+                                        className={`pb-8 transition-all duration-500 ease-out ${
+                                            activeService === i
+                                                ? "translate-x-0 opacity-100"
+                                                : "translate-x-8 opacity-0"
+                                        }`}
+                                        style={{
+                                            transitionDelay:
+                                                activeService === i
+                                                    ? "200ms"
+                                                    : "0ms",
+                                        }}
+                                    >
+                                        <div>
+                                            <p className="text-[#3D3D47] leading-[170%] tracking-[-0.1px]">
+                                                {val.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                <div className="flex flex-col lg:w-1/2 w-full">
-                    {services.map((val, i) => (
-                        <div
-                            key={i}
-                            className="flex flex-col gap-5 border-b border-gray-200 last:border-b-0"
-                        >
-                            <div
-                                className={`flex justify-between items-center py-5 cursor-pointer transition-all duration-300 px-2 rounded-lg group ${
-                                    activeService === i
-                                        ? "bg-gray-50/50"
-                                        : "hover:bg-gray-50/30"
-                                }`}
-                                onClick={() => toggleService(i)}
-                            >
-                                <div className="flex gap-2.5 items-center">
-                                    <div className="relative aspect-square">
-                                        <Image
-                                            src={val.icons}
-                                            alt="icons-service"
-                                            width={40}
-                                            height={40}
-                                        />
-                                    </div>
-                                    <p
-                                        className={`text-xl font-medium leading-[120%] tracking-[-0.2px] transition-colors duration-300 ${
-                                            activeService === i
-                                                ? "text-[#101014]"
-                                                : "text-[#101014]/30 group-hover:text-[#000000]"
-                                        }`}
-                                    >
-                                        {val.name}
-                                    </p>
-                                </div>
-                                <div className="relative w-6 h-6 flex items-center justify-center">
-                                    <Plus
-                                        className={`absolute w-6 h-6 text-[#101014] transition-all duration-300 ease-in-out ${
-                                            activeService === i
-                                                ? "rotate-45 opacity-0 scale-75"
-                                                : "rotate-0 opacity-100 scale-100"
-                                        }`}
-                                    />
-                                    <X
-                                        className={`absolute w-6 h-6 text-[#101014] transition-all duration-300 ease-in-out ${
-                                            activeService === i
-                                                ? "rotate-0 opacity-100 scale-100"
-                                                : "rotate-45 opacity-0 scale-75"
-                                        }`}
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                className={`px-2 overflow-hidden transition-all duration-500 ease-in-out ${
-                                    activeService === i
-                                        ? "opacity-100"
-                                        : "max-h-0 opacity-0"
-                                }`}
-                            >
-                                <div
-                                    className={`pb-8 transition-all duration-500 ease-out ${
-                                        activeService === i
-                                            ? "translate-x-0 opacity-100"
-                                            : "translate-x-8 opacity-0"
-                                    }`}
-                                    style={{
-                                        transitionDelay:
-                                            activeService === i
-                                                ? "200ms"
-                                                : "0ms",
-                                    }}
-                                >
-                                    <div>
-                                        <p className="text-[#3D3D47] leading-[170%] tracking-[-0.1px]">
-                                            {val.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <style jsx>{`
+                    .animate-fadeInScale {
+                        animation: fadeInScale 0.6s ease-out;
+                    }
+                `}</style>
             </div>
-
-            <style jsx>{`
-                .animate-fadeInScale {
-                    animation: fadeInScale 0.6s ease-out;
-                }
-            `}</style>
         </section>
     );
 }

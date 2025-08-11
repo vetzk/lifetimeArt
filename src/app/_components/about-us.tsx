@@ -92,7 +92,7 @@ export default function AboutUs() {
 
     return (
         <section className="w-full flex flex-col">
-            <div className="3xl:px-[260px] py-[120px] xs:px-10 lg:px-0">
+            <div className=" py-[120px] max-w-[1440px] mx-auto xs:px-10 lg:px-0">
                 <div
                     ref={headerRef}
                     className="flex xs:flex-col lg:flex-row items-center gap-20 lg:px-10 2xl:px-20"
@@ -227,7 +227,7 @@ export default function AboutUs() {
                 </div>
             </div>
 
-            <div className="3xl:px-[260px] py-[120px] xs:px-10 lg:px-0">
+            <div className="max-w-[1440px] mx-auto py-[120px] xs:px-10 lg:px-0">
                 <div
                     ref={statsRef}
                     className="2xl:flex gap-[120px] 2xl:items-center grid xs:grid-cols-1 lg:grid-cols-2 2xl:px-20 lg:px-10"
