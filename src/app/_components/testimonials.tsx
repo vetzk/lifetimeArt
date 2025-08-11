@@ -37,8 +37,11 @@ const testimonials = [
 export default function Testimonials() {
     const [headerInView, setHeaderInView] = useState<boolean>(false);
     const [currentSlide, setCurrentSlide] = useState<number>(0);
+    const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+    const [direction, setDirection] = useState<"next" | "prev">("next");
 
     const headerRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         const headerObserver = new IntersectionObserver(
             ([entry]) => {
@@ -57,7 +60,17 @@ export default function Testimonials() {
     }, []);
 
     const goToSlide = (slideIndex: number) => {
-        setCurrentSlide(slideIndex);
+        if (slideIndex === currentSlide) return;
+
+        setIsTransitioning(true);
+        setDirection(slideIndex > currentSlide ? "next" : "prev");
+
+        setTimeout(() => {
+            setCurrentSlide(slideIndex);
+            setTimeout(() => {
+                setIsTransitioning(false);
+            }, 50);
+        }, 250);
     };
 
     return (
@@ -132,23 +145,32 @@ export default function Testimonials() {
                                         ))}
                                     </div>
                                     <p className="leading-[170%] tracking-[-0.1px]">
-                                        Refit transformed our outdoor space with
-                                        a beautiful garden path. The work was
-                                        completed on time, and the finish is
-                                        excellent. A great team to work with!
+                                        {
+                                            testimonials[
+                                                i % testimonials.length
+                                            ].text
+                                        }
                                     </p>
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="relative">
                                         <Image
-                                            src={"/assets/person.png"}
+                                            src={
+                                                testimonials[
+                                                    i % testimonials.length
+                                                ].image
+                                            }
                                             alt="person"
                                             width={50}
                                             height={50}
                                         />
                                     </div>
                                     <p className="tracking-[-0.1px] text-[#101014]">
-                                        Emily Carter
+                                        {
+                                            testimonials[
+                                                i % testimonials.length
+                                            ].name
+                                        }
                                     </p>
                                 </div>
                             </div>
@@ -181,23 +203,32 @@ export default function Testimonials() {
                                         ))}
                                     </div>
                                     <p className="leading-[170%] tracking-[-0.1px]">
-                                        Refit transformed our outdoor space with
-                                        a beautiful garden path. The work was
-                                        completed on time, and the finish is
-                                        excellent. A great team to work with!
+                                        {
+                                            testimonials[
+                                                i % testimonials.length
+                                            ].text
+                                        }
                                     </p>
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="relative">
                                         <Image
-                                            src={"/assets/person.png"}
+                                            src={
+                                                testimonials[
+                                                    i % testimonials.length
+                                                ].image
+                                            }
                                             alt="person"
                                             width={50}
                                             height={50}
                                         />
                                     </div>
                                     <p className="tracking-[-0.1px] text-[#101014]">
-                                        Emily Carter
+                                        {
+                                            testimonials[
+                                                i % testimonials.length
+                                            ].name
+                                        }
                                     </p>
                                 </div>
                             </div>
@@ -234,24 +265,33 @@ export default function Testimonials() {
                                         ))}
                                     </div>
                                     <p className="leading-[170%] tracking-[-0.1px]">
-                                        The kitchen renovation exceeded our
-                                        expectations. Professional service,
-                                        quality materials, and excellent
-                                        attention to detail. Highly recommend
-                                        LifetimeArt!
+                                        {
+                                            testimonials[
+                                                (i + 2) % testimonials.length
+                                            ].text
+                                        }
                                     </p>
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="relative">
                                         <Image
-                                            src={"/assets/person-2.png"}
+                                            src={
+                                                testimonials[
+                                                    (i + 2) %
+                                                        testimonials.length
+                                                ].image
+                                            }
                                             alt="person"
                                             width={50}
                                             height={50}
                                         />
                                     </div>
                                     <p className="tracking-[-0.1px] text-[#101014]">
-                                        Michael Johnson
+                                        {
+                                            testimonials[
+                                                (i + 2) % testimonials.length
+                                            ].name
+                                        }
                                     </p>
                                 </div>
                             </div>
@@ -284,24 +324,33 @@ export default function Testimonials() {
                                         ))}
                                     </div>
                                     <p className="leading-[170%] tracking-[-0.1px]">
-                                        The kitchen renovation exceeded our
-                                        expectations. Professional service,
-                                        quality materials, and excellent
-                                        attention to detail. Highly recommend
-                                        LifetimeArt!
+                                        {
+                                            testimonials[
+                                                (i + 2) % testimonials.length
+                                            ].text
+                                        }
                                     </p>
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="relative">
                                         <Image
-                                            src={"/assets/person-2.png"}
+                                            src={
+                                                testimonials[
+                                                    (i + 2) %
+                                                        testimonials.length
+                                                ].image
+                                            }
                                             alt="person"
                                             width={50}
                                             height={50}
                                         />
                                     </div>
                                     <p className="tracking-[-0.1px] text-[#101014]">
-                                        Michael Johnson
+                                        {
+                                            testimonials[
+                                                (i + 2) % testimonials.length
+                                            ].name
+                                        }
                                     </p>
                                 </div>
                             </div>
@@ -311,46 +360,49 @@ export default function Testimonials() {
             </div>
             <div className="w-full flex flex-col gap-6 xs:flex lg:hidden">
                 <div className="relative overflow-hidden">
-                    <div className="flex transition-transform duration-500 ease-in-out">
-                        <div className="w-full flex justify-center px-2">
-                            <div className="w-full max-w-[342px] h-[315px] min-h-[315px] max-h-[315px] rounded-xl border border-[#E6E6E6] bg-[#E9ECF2] flex flex-col justify-between p-6">
-                                <div className="flex flex-col gap-[9px]">
-                                    <div className="flex gap-1 items-center">
-                                        {[...Array(5)].map((_, starIndex) => (
-                                            <div
-                                                className="relative aspect-square h-5 w-5"
-                                                key={starIndex}
-                                            >
-                                                <Image
-                                                    src={
-                                                        "/icons/black-star.svg"
-                                                    }
-                                                    alt="star"
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="leading-[170%] tracking-[-0.1px] text-sm">
-                                        {testimonials[currentSlide].text}
-                                    </p>
+                    <div className="w-full flex justify-center px-2">
+                        <div
+                            className={`w-full max-w-[342px] h-[315px] min-h-[315px] max-h-[315px] rounded-xl border border-[#E6E6E6] bg-[#E9ECF2] flex flex-col justify-between p-6 transition-all duration-500 ease-out ${
+                                isTransitioning
+                                    ? direction === "next"
+                                        ? "opacity-0 translate-x-8 scale-95"
+                                        : "opacity-0 -translate-x-8 scale-95"
+                                    : "opacity-100 translate-x-0 scale-100"
+                            }`}
+                        >
+                            <div className="flex flex-col gap-[9px]">
+                                <div className="flex gap-1 items-center">
+                                    {[...Array(5)].map((_, starIndex) => (
+                                        <div
+                                            className="relative aspect-square h-5 w-5"
+                                            key={starIndex}
+                                        >
+                                            <Image
+                                                src={"/icons/black-star.svg"}
+                                                alt="star"
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                    ))}
                                 </div>
-                                <div className="flex gap-4 items-center">
-                                    <div className="relative">
-                                        <Image
-                                            src={
-                                                testimonials[currentSlide].image
-                                            }
-                                            alt="person"
-                                            width={50}
-                                            height={50}
-                                        />
-                                    </div>
-                                    <p className="tracking-[-0.1px] text-[#101014]">
-                                        {testimonials[currentSlide].name}
-                                    </p>
+                                <p className="leading-[170%] tracking-[-0.1px] text-sm">
+                                    {testimonials[currentSlide].text}
+                                </p>
+                            </div>
+                            <div className="flex gap-4 items-center">
+                                <div className="relative">
+                                    <Image
+                                        src={testimonials[currentSlide].image}
+                                        alt="person"
+                                        width={50}
+                                        height={50}
+                                        className="rounded-full"
+                                    />
                                 </div>
+                                <p className="tracking-[-0.1px] text-[#101014]">
+                                    {testimonials[currentSlide].name}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -361,10 +413,10 @@ export default function Testimonials() {
                         <button
                             key={`dot-${index}`}
                             onClick={() => goToSlide(index)}
-                            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            className={`w-2 h-2 rounded-full transition-all duration-300 transform hover:scale-125 ${
                                 currentSlide === index
-                                    ? "bg-[#101014]"
-                                    : "bg-[#E6E6E6]"
+                                    ? "bg-[#101014] scale-110"
+                                    : "bg-[#E6E6E6] hover:bg-[#CCCCCC]"
                             }`}
                             aria-label={`Go to slide ${index + 1}`}
                         />
