@@ -12,7 +12,7 @@ import Footer from "./footer";
 
 export default function HomeContent() {
     return (
-        <div className="w-full p-0 m-0">
+        <div className="w-full p-0 m-0 overflow-x-hidden">
             <div className="fixed top-0 left-0 w-full z-50">
                 <Navbar />
             </div>
