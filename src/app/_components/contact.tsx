@@ -171,7 +171,7 @@ export default function Contact() {
                                 <span className="text-red-500">*</span>
                             </label>
                             <Textarea
-                                className="w-full min-h-[150px] border-[#DBDAD9] bg-[#FAFAFA] py-[13px] px-[12px] border rounded-[6px] focus:outline-none focus:ring-2 focus:ring-black/10 transition-all"
+                                className="w-full resize-none min-h-[150px] border-[#DBDAD9] bg-[#FAFAFA] py-[13px] px-[12px] border rounded-[6px] focus:outline-none focus:ring-2 focus:ring-black/10 transition-all"
                                 placeholder="Hello, I'd like to enquire about..."
                             />
                         </div>
