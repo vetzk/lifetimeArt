@@ -40,16 +40,72 @@ export default function AboutUs() {
     const [imagesInView, setImagesInView] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+    const [isPaused, setIsPaused] = useState<boolean>(false);
 
     const headerRef = useRef<HTMLDivElement>(null);
     const statsRef = useRef<HTMLDivElement>(null);
     const imagesRef = useRef<HTMLDivElement>(null);
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
+
+    const touchStartRef = useRef<number>(0);
+    const touchEndRef = useRef<number>(0);
+
+    const nextSlide = () => {
+        setIsTransitioning(true);
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setTimeout(() => setIsTransitioning(false), 300);
+    };
 
     const goToSlide = (index: number) => {
         if (isTransitioning || index === currentIndex) return;
         setIsTransitioning(true);
         setCurrentIndex(index);
         setTimeout(() => setIsTransitioning(false), 300);
+
+        setIsPaused(true);
+        setTimeout(() => {
+            setIsPaused(false);
+        }, 50);
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartRef.current = e.targetTouches[0].clientX;
+        setIsPaused(true);
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndRef.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStartRef.current || !touchEndRef.current) return;
+
+        const distance = touchStartRef.current - touchEndRef.current;
+        const isLeftSwipe = distance > 50;
+        const isRightSwipe = distance < -50;
+
+        if (isLeftSwipe) {
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+        }
+
+        if (isRightSwipe) {
+            setCurrentIndex((prev) =>
+                prev === 0 ? images.length - 1 : prev - 1
+            );
+        }
+
+        setTimeout(() => {
+            setIsPaused(false);
+        }, 1000);
+    };
+
+    const handleMouseEnter = () => {
+        setIsPaused(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsPaused(false);
     };
 
     const currentImage = `/assets/about-us-${currentIndex + 1}.png`;
@@ -73,6 +129,7 @@ export default function AboutUs() {
             },
             { threshold: 0.2, rootMargin: "-100px 0px -100px 0px" }
         );
+
         const imagesObserver = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -92,6 +149,27 @@ export default function AboutUs() {
             imagesObserver.disconnect();
         };
     }, []);
+
+    useEffect(() => {
+        if (isPaused) {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+                autoSlideRef.current = null;
+            }
+            return;
+        }
+
+        autoSlideRef.current = setInterval(() => {
+            nextSlide();
+        }, 2000);
+
+        return () => {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+                autoSlideRef.current = null;
+            }
+        };
+    }, [isPaused]);
 
     return (
         <section className="w-full flex flex-col">
@@ -190,7 +268,15 @@ export default function AboutUs() {
             </div>
 
             <div className="w-full lg:hidden">
-                <div className="relative overflow-hidden">
+                <div
+                    ref={carouselRef}
+                    className="relative overflow-hidden"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <div
                         className={`transition-all duration-300 ease-out ${
                             isTransitioning
@@ -281,6 +367,19 @@ export default function AboutUs() {
                 .animate-scroll {
                     animation: scroll 20s linear infinite;
                     width: ${(400 + 32) * 10}px;
+                }
+
+                @keyframes progress {
+                    0% {
+                        width: 0%;
+                    }
+                    100% {
+                        width: 100%;
+                    }
+                }
+
+                .animate-progress {
+                    animation: progress 3s linear infinite;
                 }
             `}</style>
         </section>
