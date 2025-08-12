@@ -153,11 +153,11 @@ export default function FAQs() {
                             backdropFilter: "blur(10px)",
                         }}
                     >
-                        <div className="flex gap-6 items-center cursor-pointer hover:scale-105 transition-transform duration-200">
-                            <p
-                                onClick={() => scrollToSection("contact")}
-                                className="text-[#101014] font-medium leading-[20.8px]"
-                            >
+                        <div
+                            onClick={() => scrollToSection("contact")}
+                            className="flex gap-6 items-center cursor-pointer hover:scale-105 transition-transform duration-200"
+                        >
+                            <p className="text-[#101014] font-medium leading-[20.8px]">
                                 Get in touch
                             </p>
                             <div className="rounded-full bg-black h-10 w-10 flex items-center justify-center">
