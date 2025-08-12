@@ -55,6 +55,19 @@ export default function FAQs() {
         setActiveFaq(activeFaq === index ? null : index);
     };
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const navHeight = 80;
+            const elementPosition = element.offsetTop - navHeight;
+
+            window.scrollTo({
+                top: elementPosition,
+                behavior: "smooth",
+            });
+        }
+    };
+
     useEffect(() => {
         const observerOptions = {
             threshold: 0.1,
@@ -141,7 +154,10 @@ export default function FAQs() {
                         }}
                     >
                         <div className="flex gap-6 items-center cursor-pointer hover:scale-105 transition-transform duration-200">
-                            <p className="text-[#101014] font-medium leading-[20.8px]">
+                            <p
+                                onClick={() => scrollToSection("contact")}
+                                className="text-[#101014] font-medium leading-[20.8px]"
+                            >
                                 Get in touch
                             </p>
                             <div className="rounded-full bg-black h-10 w-10 flex items-center justify-center">
