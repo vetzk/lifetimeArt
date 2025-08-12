@@ -256,7 +256,7 @@ export default function Navbar() {
                                     height={32}
                                 />
                             </div>
-                            <p className="font-medium text-lg leading-[28px] tracking-[-0.4px] text-white">
+                            <p className="font-medium text-[23px] leading-[28px] tracking-[-0.4px] text-white">
                                 LifetimeArt
                             </p>
                         </div>
