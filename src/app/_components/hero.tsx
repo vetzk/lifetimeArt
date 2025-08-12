@@ -72,7 +72,7 @@ export default function Hero() {
                                             }`}
                                             style={{
                                                 transitionDelay: `${
-                                                    600 + index * 300
+                                                    400 + index * 300
                                                 }ms`,
                                             }}
                                         >

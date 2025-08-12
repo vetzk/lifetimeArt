@@ -126,7 +126,7 @@ export default function Navbar() {
             >
                 <div className="max-w-[1440px] px-5 lg:px-10 2xl:px-20 py-6 lg:py-8 2xl:py-10 2xl:top-[1px] mx-auto flex justify-between items-center">
                     <div
-                        className={`flex items-center gap-[5px] cursor-pointer transition-all duration-700 ease-out ${
+                        className={`flex items-center gap-[5px] cursor-pointer transition-all duration-400 ease-out ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"
