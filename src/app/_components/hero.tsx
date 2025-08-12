@@ -50,10 +50,10 @@ export default function Hero() {
                             >
                                 <div className="relative bg-white/30 h-4 w-4 rounded-full">
                                     <div
-                                        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-2 w-2 bg-white rounded-full transition-all duration-1000 ease-out ${
+                                        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-2 w-2 bg-white rounded-full transition-all duration-300 ease-out ${
                                             isVisible ? "scale-100" : "scale-0"
                                         }`}
-                                        style={{ transitionDelay: "400ms" }}
+                                        style={{ transitionDelay: "300ms" }}
                                     ></div>
                                 </div>
                                 <p className="text-center text-[14px] text-[#D0D1DB] font-normal">
@@ -65,7 +65,7 @@ export default function Hero() {
                                     {headlineLines.map((line, index) => (
                                         <div
                                             key={index}
-                                            className={`transition-all duration-1000 ease-out ${
+                                            className={`transition-all duration-300 ease-out ${
                                                 isVisible
                                                     ? "opacity-100 translate-y-0"
                                                     : "opacity-0 translate-y-8"
@@ -89,7 +89,7 @@ export default function Hero() {
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-4"
                                 }`}
-                                style={{ transitionDelay: "1400ms" }}
+                                style={{ transitionDelay: "300ms" }}
                             >
                                 LifetimeArt delivers expert home improvements,
                                 <br />
@@ -105,7 +105,7 @@ export default function Hero() {
                                 : "opacity-0 translate-y-4"
                         }`}
                         style={{
-                            transitionDelay: "1800ms",
+                            transitionDelay: "300ms",
                             transition: "all 0.3s ease-out",
                         }}
                         onMouseEnter={(e) => {
@@ -149,7 +149,7 @@ export default function Hero() {
                             : "opacity-0 scale-95"
                     }`}
                     style={{
-                        transitionDelay: "1000ms",
+                        transitionDelay: "300ms",
                         transform: `translateY(${scrollY * 0.1}px) scale(${
                             isVisible ? 1 : 0.95
                         })`,
@@ -165,7 +165,7 @@ export default function Hero() {
                             />
                         </div>
                         <div
-                            className={`hidden 2xl:absolute bottom-4 right-4 rounded-lg p-6 2xl:flex flex-col gap-[9px] shadow-lg max-w-60 transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                            className={`hidden 2xl:absolute bottom-4 right-4 rounded-lg p-6 2xl:flex flex-col gap-[9px] shadow-lg max-w-60 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
                                 isVisible
                                     ? "opacity-100 translate-x-0 translate-y-0 scale-100"
                                     : "opacity-0 translate-x-12 translate-y-12 scale-90"
@@ -173,7 +173,7 @@ export default function Hero() {
                             style={{
                                 backgroundColor: "#1010144D",
                                 backdropFilter: "blur(15px)",
-                                transitionDelay: "1600ms",
+                                transitionDelay: "300ms",
                             }}
                         >
                             <div className="flex items-center gap-1 mb-1">
@@ -188,7 +188,7 @@ export default function Hero() {
                                         }}
                                     >
                                         <div
-                                            className={`w-full h-full bg-white transition-all duration-500 ease-out ${
+                                            className={`w-full h-full bg-white transition-all duration-300 ease-out ${
                                                 isVisible
                                                     ? "scale-100 rotate-0"
                                                     : "scale-0 rotate-180"

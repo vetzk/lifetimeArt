@@ -91,12 +91,12 @@ export default function Testimonials() {
                         <p className="font-semibold">Testimonials</p>
                     </div>
                     <p
-                        className={`text-5xl text-center font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-1000 ease-out ${
+                        className={`text-5xl text-center font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-300 ease-out ${
                             headerInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-6"
                         }`}
-                        style={{ transitionDelay: "400ms" }}
+                        style={{ transitionDelay: "300ms" }}
                     >
                         Hear from our clients
                     </p>
@@ -107,7 +107,7 @@ export default function Testimonials() {
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-4"
                     }`}
-                    style={{ transitionDelay: "600ms" }}
+                    style={{ transitionDelay: "300ms" }}
                 >
                     {" "}
                     Hear from our happy clients about their experience working{" "}
@@ -362,7 +362,7 @@ export default function Testimonials() {
                 <div className="relative overflow-hidden">
                     <div className="w-full flex justify-center px-2">
                         <div
-                            className={`w-full max-w-[342px] h-[315px] min-h-[315px] max-h-[315px] rounded-xl border border-[#E6E6E6] bg-[#E9ECF2] flex flex-col justify-between p-6 transition-all duration-500 ease-out ${
+                            className={`w-full max-w-[342px] h-[315px] min-h-[315px] max-h-[315px] rounded-xl border border-[#E6E6E6] bg-[#E9ECF2] flex flex-col justify-between p-6 transition-all duration-300 ease-out ${
                                 isTransitioning
                                     ? direction === "next"
                                         ? "opacity-0 translate-x-8 scale-95"

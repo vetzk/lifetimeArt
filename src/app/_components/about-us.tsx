@@ -110,12 +110,12 @@ export default function AboutUs() {
                         </div>
                         <div className="overflow-hidden">
                             <p
-                                className={`text-5xl leading-[55px] tracking-[-0.8px] font-medium text-[#101014] transition-all duration-1000 ease-out ${
+                                className={`text-5xl leading-[55px] tracking-[-0.8px] font-medium text-[#101014] transition-all duration-300 ease-out ${
                                     headerInView
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-8"
                                 }`}
-                                style={{ transitionDelay: "400ms" }}
+                                style={{ transitionDelay: "300ms" }}
                             >
                                 Home <br /> Improvement <br /> Specialists
                             </p>
@@ -123,12 +123,12 @@ export default function AboutUs() {
                     </div>
                     <div className="lg:w-1/2 xs:w-full">
                         <p
-                            className={`leading-[170%] text-xl text-[#3D3D47] tracking-[-0.3px] transition-all duration-1000 ease-out ${
+                            className={`leading-[170%] text-xl text-[#3D3D47] tracking-[-0.3px] transition-all duration-300 ease-out ${
                                 headerInView
                                     ? "opacity-100 translate-x-0"
                                     : "opacity-0 translate-x-12"
                             }`}
-                            style={{ transitionDelay: "800ms" }}
+                            style={{ transitionDelay: "300ms" }}
                         >
                             Welcome to LifetimeArt, your trusted home
                             improvement experts, dedicated to transforming homes
@@ -152,7 +152,7 @@ export default function AboutUs() {
                             style={{
                                 transitionDelay: `${(i % 5) * 200}ms`,
                             }}
-                            className={`relative w-[400px] h-[500px] aspect-[4/5] flex-shrink-0 transition-all duration-1000 ease-out ${
+                            className={`relative w-[400px] h-[500px] aspect-[4/5] flex-shrink-0 transition-all duration-300 ease-out ${
                                 isVisible
                                     ? "opacity-100 translate-x-0"
                                     : "opacity-0 translate-x-[-100px]"
@@ -184,7 +184,7 @@ export default function AboutUs() {
             <div className="w-full lg:hidden">
                 <div className="relative overflow-hidden">
                     <div
-                        className={`transition-all duration-500 ease-out ${
+                        className={`transition-all duration-300 ease-out ${
                             isTransitioning
                                 ? "opacity-75 scale-98"
                                 : "opacity-100 scale-100"

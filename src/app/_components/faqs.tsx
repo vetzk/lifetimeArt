@@ -215,14 +215,14 @@ export default function FAQs() {
                                 </div>
                             </div>
                             <div
-                                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${
                                     activeFaq === i
                                         ? "opacity-100"
                                         : "max-h-0 opacity-0"
                                 }`}
                             >
                                 <div
-                                    className={`pb-8 transition-all duration-500 ease-out ${
+                                    className={`pb-8 transition-all duration-300 ease-out ${
                                         activeFaq === i
                                             ? "translate-x-0 opacity-100"
                                             : "translate-x-8 opacity-0"

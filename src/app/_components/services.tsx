@@ -62,7 +62,7 @@ export default function Services() {
             setActiveService(index);
             setTimeout(() => {
                 setImageLoading(false);
-            }, 500);
+            }, 300);
         }
     };
 
@@ -113,12 +113,12 @@ export default function Services() {
                             <p className="font-semibold">Services</p>
                         </div>
                         <p
-                            className={`text-5xl font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-1000 ease-out ${
+                            className={`text-5xl font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-300 ease-out ${
                                 headerInView
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-6"
                             }`}
-                            style={{ transitionDelay: "400ms" }}
+                            style={{ transitionDelay: "300ms" }}
                         >
                             What we do
                         </p>
@@ -139,7 +139,7 @@ export default function Services() {
                 <div className="flex lg:flex-row xs:flex-col items-center gap-20">
                     <div
                         ref={imageRef}
-                        className={`lg:w-1/2 xs:w-full h-full relative aspect-[3/3.5] overflow-hidden transition-all duration-1000 ease-out ${
+                        className={`lg:w-1/2 xs:w-full h-full relative aspect-[3/3.5] overflow-hidden transition-all duration-300 ease-out ${
                             imageInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-8"
@@ -213,14 +213,14 @@ export default function Services() {
                                     </div>
                                 </div>
                                 <div
-                                    className={`px-2 overflow-hidden transition-all duration-500 ease-in-out ${
+                                    className={`px-2 overflow-hidden transition-all duration-300 ease-in-out ${
                                         activeService === i
                                             ? "opacity-100"
                                             : "max-h-0 opacity-0"
                                     }`}
                                 >
                                     <div
-                                        className={`pb-8 transition-all duration-500 ease-out ${
+                                        className={`pb-8 transition-all duration-300 ease-out ${
                                             activeService === i
                                                 ? "translate-x-0 opacity-100"
                                                 : "translate-x-8 opacity-0"

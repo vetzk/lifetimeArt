@@ -118,12 +118,12 @@ export default function Works() {
                         <p className="font-semibold">Our work</p>
                     </div>
                     <p
-                        className={`text-5xl text-center font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-1000 ease-out ${
+                        className={`text-5xl text-center font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-300 ease-out ${
                             headerInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-6"
                         }`}
-                        style={{ transitionDelay: "400ms" }}
+                        style={{ transitionDelay: "300ms" }}
                     >
                         Get inspired by our work
                     </p>
@@ -134,7 +134,7 @@ export default function Works() {
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-4"
                     }`}
-                    style={{ transitionDelay: "600ms" }}
+                    style={{ transitionDelay: "300ms" }}
                 >
                     See how we&apos;ve transformed homes with our expert <br />
                     craftsmanship and attention to detail.
@@ -150,7 +150,7 @@ export default function Works() {
                             ref={(el) => {
                                 cardRefs.current[i] = el;
                             }}
-                            className={`rounded-[12px] p-8 flex 2xl:gap-20 lg:gap-10 items-center transition-all duration-1000 ease-out ${
+                            className={`rounded-[12px] p-8 flex 2xl:gap-20 lg:gap-10 items-center transition-all duration-300 ease-out ${
                                 cardsInView[i]
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-12"
@@ -258,7 +258,7 @@ export default function Works() {
                                     cardRefs.current[i + works.length] = el;
                                 }
                             }}
-                            className={`w-full rounded-[12px] p-8 flex flex-col gap-5 transition-all duration-1000 ease-out ${
+                            className={`w-full rounded-[12px] p-8 flex flex-col gap-5 transition-all duration-300 ease-out ${
                                 cardsInView[i + works.length]
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-12"
@@ -361,7 +361,7 @@ export default function Works() {
                 <div className="w-full lg:hidden max-w-4xl mx-auto rounded-xl">
                     <div className="relative overflow-hidden rounded-xl">
                         <div
-                            className={`transition-all duration-500 ease-out ${
+                            className={`transition-all duration-300 ease-out ${
                                 isTransitioning
                                     ? "opacity-75 scale-98"
                                     : "opacity-100 scale-100"

@@ -114,7 +114,7 @@ export default function Navbar() {
     return (
         <>
             <div
-                className={`relative transition-all duration-1000 ease-out ${
+                className={`relative transition-all duration-300 ease-out ${
                     isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 -translate-y-8"
@@ -122,7 +122,7 @@ export default function Navbar() {
                     shouldHaveDarkBg
                         ? "2xl:bg-black/90 bg-black/90"
                         : "2xl:bg-transparent bg-black/90"
-                } transition-colors duration-500 ease-in-out`}
+                } transition-colors duration-300 ease-in-out`}
             >
                 <div className="max-w-[1440px] px-5 lg:px-10 2xl:px-20 py-6 lg:py-8 2xl:py-10 2xl:top-[1px] mx-auto flex justify-between items-center">
                     <div
@@ -208,7 +208,7 @@ export default function Navbar() {
                     </button>
                 </div>
                 <div
-                    className={`lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex flex-col gap-20 px-10 transition-all duration-500 ease-out ${
+                    className={`lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex flex-col gap-20 px-10 transition-all duration-300 ease-out ${
                         isMobileMenuOpen
                             ? "opacity-100 visible"
                             : "opacity-0 invisible"
@@ -216,7 +216,7 @@ export default function Navbar() {
                 >
                     <div className="flex justify-between items-center pt-[32px]">
                         <div
-                            className={`flex items-center gap-[5px] transition-all duration-500 ease-out cursor-pointer ${
+                            className={`flex items-center gap-[5px] transition-all duration-300 ease-out cursor-pointer ${
                                 isMobileMenuOpen
                                     ? "opacity-100 translate-x-0"
                                     : "opacity-0 -translate-x-4"
@@ -241,7 +241,7 @@ export default function Navbar() {
                         </div>
                         <button
                             onClick={toggleMobileMenu}
-                            className={`flex flex-col justify-center items-center w-8 h-8 transition-all duration-500 ease-out hover:scale-110 ${
+                            className={`flex flex-col justify-center items-center w-8 h-8 transition-all duration-300 ease-out hover:scale-110 ${
                                 isMobileMenuOpen
                                     ? "opacity-100 rotate-0"
                                     : "opacity-0 rotate-180"
@@ -263,7 +263,7 @@ export default function Navbar() {
                         {navMenu.map((item, i) => (
                             <div
                                 key={i}
-                                className={`transition-all duration-500 ease-out ${
+                                className={`transition-all duration-300 ease-out ${
                                     isMobileMenuOpen
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-4"
