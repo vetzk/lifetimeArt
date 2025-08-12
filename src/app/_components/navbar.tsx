@@ -124,7 +124,7 @@ export default function Navbar() {
                         : "2xl:bg-transparent bg-black/90"
                 } transition-colors duration-300 ease-in-out`}
             >
-                <div className="max-w-[1440px] px-5 lg:px-10 2xl:px-20 py-6 lg:py-8 2xl:py-10 2xl:top-[1px] mx-auto flex justify-between items-center">
+                <div className="max-w-[1440px] px-5 lg:px-[30px] xs:px-10 2xl:px-20 py-6 lg:py-8 2xl:py-10 2xl:top-[1px] mx-auto flex justify-between items-center">
                     <div
                         className={`flex items-center gap-[5px] cursor-pointer transition-all duration-400 ease-out ${
                             isVisible

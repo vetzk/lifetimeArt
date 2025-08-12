@@ -74,10 +74,10 @@ export default function Testimonials() {
     };
 
     return (
-        <section className="w-full flex flex-col gap-24 lg:pt-[120px] lg:px-10 2xl:px-0 2xl:pb-[120px]">
+        <section className="w-full flex flex-col gap-24 lg:pt-[120px] xs:px-10 2xl:px-0 2xl:pb-[120px] ">
             <div
                 ref={headerRef}
-                className="flex flex-col gap-4 justify-center items-center"
+                className="flex flex-col gap-4 justify-center items-center max-w-[1440px] mx-auto "
             >
                 <div className="flex flex-col gap-2 items-center">
                     <div

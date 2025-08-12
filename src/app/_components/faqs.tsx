@@ -104,8 +104,8 @@ export default function FAQs() {
     }, []);
 
     return (
-        <section className="w-full 3xl:px-[260px] px-10">
-            <div className="max-w-[1440px] py-[120px] 2xl:px-20 xl:px-10 flex 2xl:flex-row xs:flex-col xs:items-center 2xl:items-start gap-20">
+        <section className="w-full 3xl:px-[260px]">
+            <div className="max-w-[1440px] py-[120px] 2xl:px-20 xs:px-10 flex 2xl:flex-row xs:flex-col xs:items-center 2xl:items-start gap-20">
                 <div className="w-full 2xl:max-w-[400px] flex flex-col 2xl:justify-start 2xl:items-start xs:justify-center xs:items-center gap-14">
                     <div className="flex flex-col 2xl:items-start 2xl:justify-start xs:justify-center xs:items-center gap-4">
                         <div className="flex flex-col 2xl:items-start 2xl:justify-start xs:justify-center xs:items-center gap-2">
