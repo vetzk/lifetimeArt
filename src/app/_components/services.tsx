@@ -129,7 +129,7 @@ export default function Services() {
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"
                         }`}
-                        style={{ transitionDelay: "600ms" }}
+                        style={{ transitionDelay: "300ms" }}
                     >
                         Find out which one of our services fit the needs of your
                         project

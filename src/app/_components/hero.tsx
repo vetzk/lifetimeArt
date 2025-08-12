@@ -143,7 +143,7 @@ export default function Hero() {
                     </div>
                 </div>
                 <div
-                    className={`sm:hidden 2xl:flex 2xl:w-1/2 h-full relative aspect-[3/4] transition-all duration-1200 ease-out ${
+                    className={`sm:hidden 2xl:flex 2xl:w-1/2 h-full relative aspect-[3/4] transition-all duration-400 ease-out ${
                         isVisible
                             ? "opacity-100 scale-100"
                             : "opacity-0 scale-95"
