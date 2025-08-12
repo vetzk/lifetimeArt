@@ -103,7 +103,7 @@ export default function Services() {
                 >
                     <div className="flex flex-col gap-2 items-center">
                         <div
-                            className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-800 ease-out ${
+                            className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-300 ease-out ${
                                 headerInView
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-4"
@@ -124,7 +124,7 @@ export default function Services() {
                         </p>
                     </div>
                     <p
-                        className={`text-xl text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-800 ease-out ${
+                        className={`text-xl text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-300 ease-out ${
                             headerInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"
@@ -147,7 +147,7 @@ export default function Services() {
                         style={{ transitionDelay: "300ms" }}
                     >
                         <div
-                            className={`w-full h-full transition-all duration-700 ease-out rounded-[12px] ${
+                            className={`w-full h-full transition-all duration-300 ease-out rounded-[12px] ${
                                 imageLoading
                                     ? "opacity-0 scale-95"
                                     : "opacity-100 scale-100"
@@ -157,7 +157,7 @@ export default function Services() {
                                 src={services[activeService].image}
                                 alt="service-image"
                                 fill
-                                className="object-cover rounded-[12px] transition-all duration-700 ease-out"
+                                className="object-cover rounded-[12px] transition-all duration-300 ease-out"
                             />
                         </div>
                     </div>

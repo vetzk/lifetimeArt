@@ -99,7 +99,7 @@ export default function AboutUs() {
                 >
                     <div className="lg:w-1/2 xs:w-full flex flex-col justify-center gap-1">
                         <div
-                            className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-800 ease-out ${
+                            className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-300 ease-out ${
                                 headerInView
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-4"
@@ -235,7 +235,7 @@ export default function AboutUs() {
                     {stats.map((val, i) => (
                         <div
                             key={i}
-                            className={`2xl:max-w-[230px] flex flex-col justify-center gap-2 text-[#101014] transition-all duration-800 ease-out ${
+                            className={`2xl:max-w-[230px] flex flex-col justify-center gap-2 text-[#101014] transition-all duration-300 ease-out ${
                                 statsInView
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-12"

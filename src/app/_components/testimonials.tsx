@@ -81,7 +81,7 @@ export default function Testimonials() {
             >
                 <div className="flex flex-col gap-2 items-center">
                     <div
-                        className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-800 ease-out ${
+                        className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-300 ease-out ${
                             headerInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"
@@ -102,7 +102,7 @@ export default function Testimonials() {
                     </p>
                 </div>
                 <p
-                    className={`text-xl text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-800 ease-out ${
+                    className={`text-xl text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-300 ease-out ${
                         headerInView
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-4"

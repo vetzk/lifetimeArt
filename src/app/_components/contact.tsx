@@ -53,7 +53,7 @@ export default function Contact() {
                 <div className="flex flex-col lg:flex-row bg-black gap-[100px] 2xl:p-20 xs:px-5 xs:py-[60px] rounded-[12px]">
                     <div
                         ref={leftContentRef}
-                        className={`lg:w-1/2 w-full flex flex-col gap-12 transition-all duration-800 ease-out ${
+                        className={`lg:w-1/2 w-full flex flex-col gap-12 transition-all duration-300 ease-out ${
                             isVisible.leftContent
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-16"
@@ -129,7 +129,7 @@ export default function Contact() {
                     </div>
                     <div
                         ref={rightFormRef}
-                        className={`lg:w-1/2 w-full rounded-[12px] p-5 border border-[#E6E6E6] bg-white flex flex-col gap-5 transition-all duration-800 ease-out ${
+                        className={`lg:w-1/2 w-full rounded-[12px] p-5 border border-[#E6E6E6] bg-white flex flex-col gap-5 transition-all duration-300 ease-out ${
                             isVisible.rightForm
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-16"

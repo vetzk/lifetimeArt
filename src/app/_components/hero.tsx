@@ -42,7 +42,7 @@ export default function Hero() {
                     <div className="flex flex-col gap-6">
                         <div className="flex flex-col gap-1">
                             <div
-                                className={`w-fit py-2 px-3 flex items-center gap-1.5 rounded-3xl bg-[#28282C] transition-all duration-800 ease-out ${
+                                className={`w-fit py-2 px-3 flex items-center gap-1.5 rounded-3xl bg-[#28282C] transition-all  ease-out ${
                                     isVisible
                                         ? "opacity-100 scale-100 translate-y-0"
                                         : "opacity-0 scale-95 translate-y-2"
@@ -84,7 +84,7 @@ export default function Hero() {
                         </div>
                         <div className="flex items-center">
                             <p
-                                className={`text-xl leading-[170%] tracking-[0.3px] text-[#D0D1DB] transition-all duration-800 ease-out ${
+                                className={`text-xl leading-[170%] tracking-[0.3px] text-[#D0D1DB] transition-all duration-300 ease-out ${
                                     isVisible
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-4"
@@ -99,7 +99,7 @@ export default function Hero() {
                         </div>
                     </div>
                     <div
-                        className={`w-fit rounded-3xl py-2.5 px-4 bg-white/10 cursor-pointer group transition-all duration-800 ease-out ${
+                        className={`w-fit rounded-3xl py-2.5 px-4 bg-white/10 cursor-pointer group transition-all duration-300 ease-out ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"

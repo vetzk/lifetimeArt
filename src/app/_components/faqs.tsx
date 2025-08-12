@@ -111,7 +111,7 @@ export default function FAQs() {
                         <div className="flex flex-col 2xl:items-start 2xl:justify-start xs:justify-center xs:items-center gap-2">
                             <div
                                 ref={pillRef}
-                                className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-700 ease-out ${
+                                className={`w-fit text-white px-3 py-2 rounded-3xl bg-[#28282C] transition-all duration-200 ease-out ${
                                     isVisible.pill
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-8"
@@ -121,7 +121,7 @@ export default function FAQs() {
                             </div>
                             <p
                                 ref={titleRef}
-                                className={`text-5xl 2xl:text-start xs:text-center font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-700 ease-out ${
+                                className={`text-5xl 2xl:text-start xs:text-center font-medium leading-[120%] tracking-[-0.8px] text-[#101014] transition-all duration-300 ease-out ${
                                     isVisible.title
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-8"
@@ -131,7 +131,7 @@ export default function FAQs() {
                             </p>
                         </div>
                         <p
-                            className={`text-xl 2xl:text-start xs:text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-700 ease-out ${
+                            className={`text-xl 2xl:text-start xs:text-center text-[#3D3D47] leading-[170%] tracking-[-0.3px] transition-all duration-300 ease-out ${
                                 isVisible.title
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-4"
@@ -142,7 +142,7 @@ export default function FAQs() {
                     </div>
                     <div
                         ref={buttonRef}
-                        className={`w-fit rounded-3xl py-2.5 px-4 transition-all duration-800 ease-out ${
+                        className={`w-fit rounded-3xl py-2.5 px-4 transition-all duration-200 ease-out ${
                             isVisible.button
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-12"

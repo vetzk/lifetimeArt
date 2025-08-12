@@ -147,7 +147,7 @@ export default function Navbar() {
                         {navMenu.map((item, i) => (
                             <div
                                 key={i}
-                                className={`relative group cursor-pointer transition-all duration-700 ease-out ${
+                                className={`relative group cursor-pointer transition-all duration-300 ease-out ${
                                     isVisible
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-4"
@@ -254,7 +254,7 @@ export default function Navbar() {
                         </button>
                     </div>
                     <div
-                        className={`flex flex-col items-start justify-start h-[calc(100%-80px)] space-y-8 transition-all duration-700 ease-out ${
+                        className={`flex flex-col items-start justify-start h-[calc(100%-80px)] space-y-8 transition-all duration-300 ease-out ${
                             isMobileMenuOpen
                                 ? "translate-y-0 opacity-100"
                                 : "translate-y-8 opacity-0"
