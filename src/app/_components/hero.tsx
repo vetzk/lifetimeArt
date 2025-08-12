@@ -183,7 +183,7 @@ export default function Hero() {
                                         key={i}
                                         style={{
                                             transitionDelay: `${
-                                                1800 + i * 100
+                                                300 + i * 100
                                             }ms`,
                                         }}
                                     >
@@ -197,7 +197,7 @@ export default function Hero() {
                                                 clipPath:
                                                     "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                                                 transitionDelay: `${
-                                                    1800 + i * 100
+                                                    300 + i * 100
                                                 }ms`,
                                             }}
                                         ></div>
