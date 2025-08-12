@@ -90,6 +90,18 @@ export default function Navbar() {
         };
     }, []);
 
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isMobileMenuOpen]);
+
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
@@ -114,7 +126,7 @@ export default function Navbar() {
     return (
         <>
             <div
-                className={`relative transition-all duration-300 ease-out ${
+                className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
                     isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 -translate-y-8"
@@ -212,14 +224,18 @@ export default function Navbar() {
                         ></span>
                     </button>
                 </div>
-                <div
-                    className={`lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex flex-col gap-20 px-10 transition-all duration-300 ease-out ${
-                        isMobileMenuOpen
-                            ? "opacity-100 visible"
-                            : "opacity-0 invisible"
-                    }`}
-                >
-                    <div className="flex justify-between items-center pt-[32px]">
+            </div>
+            <div
+                className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-out ${
+                    isMobileMenuOpen
+                        ? "opacity-100 visible"
+                        : "opacity-0 invisible pointer-events-none"
+                }`}
+            >
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+
+                <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex justify-between items-center px-5 xs:px-10 py-6">
                         <div
                             className={`flex items-center gap-[5px] transition-all duration-300 ease-out cursor-pointer ${
                                 isMobileMenuOpen
@@ -259,7 +275,7 @@ export default function Navbar() {
                         </button>
                     </div>
                     <div
-                        className={`flex flex-col items-start justify-start h-[calc(100%-80px)] space-y-8 transition-all duration-300 ease-out ${
+                        className={`flex flex-col items-start justify-center flex-1 px-5 xs:px-10 space-y-8 transition-all duration-300 ease-out ${
                             isMobileMenuOpen
                                 ? "translate-y-0 opacity-100"
                                 : "translate-y-8 opacity-0"
