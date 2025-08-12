@@ -39,8 +39,12 @@ export default function Testimonials() {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
     const [direction, setDirection] = useState<"next" | "prev">("next");
+    const [isPaused, setIsPaused] = useState<boolean>(false);
 
     const headerRef = useRef<HTMLDivElement>(null);
+    const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
+
+    const AUTO_SLIDE_INTERVAL = 2000;
 
     useEffect(() => {
         const headerObserver = new IntersectionObserver(
@@ -59,8 +63,40 @@ export default function Testimonials() {
         };
     }, []);
 
+    useEffect(() => {
+        const startAutoSlide = () => {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+            }
+
+            autoSlideRef.current = setInterval(() => {
+                if (!isPaused) {
+                    setIsTransitioning(true);
+                    setDirection("next");
+
+                    setTimeout(() => {
+                        setCurrentSlide(
+                            (prev) => (prev + 1) % testimonials.length
+                        );
+                        setTimeout(() => {
+                            setIsTransitioning(false);
+                        }, 50);
+                    }, 250);
+                }
+            }, AUTO_SLIDE_INTERVAL);
+        };
+
+        startAutoSlide();
+
+        return () => {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+            }
+        };
+    }, [isPaused]);
+
     const goToSlide = (slideIndex: number) => {
-        if (slideIndex === currentSlide) return;
+        if (slideIndex === currentSlide || isTransitioning) return;
 
         setIsTransitioning(true);
         setDirection(slideIndex > currentSlide ? "next" : "prev");
@@ -69,8 +105,19 @@ export default function Testimonials() {
             setCurrentSlide(slideIndex);
             setTimeout(() => {
                 setIsTransitioning(false);
+                setTimeout(() => {
+                    setIsPaused(false);
+                }, 2000);
             }, 50);
         }, 250);
+    };
+
+    const handleMouseEnter = () => {
+        setIsPaused(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsPaused(false);
     };
 
     return (
@@ -358,7 +405,11 @@ export default function Testimonials() {
                     </div>
                 </div>
             </div>
-            <div className="w-full flex flex-col gap-6 xs:flex lg:hidden">
+            <div
+                className="w-full flex flex-col gap-6 xs:flex lg:hidden"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 <div className="relative overflow-hidden">
                     <div className="w-full flex justify-center px-2">
                         <div
