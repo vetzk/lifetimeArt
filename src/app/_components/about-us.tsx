@@ -38,6 +38,7 @@ export default function AboutUs() {
     const [headerInView, setHeaderInView] = useState<boolean>(false);
     const [statsInView, setStatsInView] = useState<boolean>(false);
     const [imagesInView, setImagesInView] = useState<boolean>(false);
+    const [carouselInView, setCarouselInView] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
     const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -46,6 +47,7 @@ export default function AboutUs() {
     const statsRef = useRef<HTMLDivElement>(null);
     const imagesRef = useRef<HTMLDivElement>(null);
     const carouselRef = useRef<HTMLDivElement>(null);
+    const carouselContainerRef = useRef<HTMLDivElement>(null);
     const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
 
     const touchStartRef = useRef<number>(0);
@@ -85,14 +87,20 @@ export default function AboutUs() {
         const isLeftSwipe = distance > 50;
         const isRightSwipe = distance < -50;
 
-        if (isLeftSwipe) {
-            setCurrentIndex((prev) => (prev + 1) % images.length);
-        }
+        if (isLeftSwipe || isRightSwipe) {
+            setIsTransitioning(true);
 
-        if (isRightSwipe) {
-            setCurrentIndex((prev) =>
-                prev === 0 ? images.length - 1 : prev - 1
-            );
+            if (isLeftSwipe) {
+                setCurrentIndex((prev) => (prev + 1) % images.length);
+            }
+
+            if (isRightSwipe) {
+                setCurrentIndex((prev) =>
+                    prev === 0 ? images.length - 1 : prev - 1
+                );
+            }
+
+            setTimeout(() => setIsTransitioning(false), 300);
         }
 
         setTimeout(() => {
@@ -139,14 +147,26 @@ export default function AboutUs() {
             { threshold: 0.1, rootMargin: "-100px 0px -100px 0px" }
         );
 
+        const carouselObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setCarouselInView(true);
+                }
+            },
+            { threshold: 0.2, rootMargin: "-50px 0px -50px 0px" }
+        );
+
         if (headerRef.current) headerObserver.observe(headerRef.current);
         if (statsRef.current) statsObserver.observe(statsRef.current);
         if (imagesRef.current) imagesObserver.observe(imagesRef.current);
+        if (carouselContainerRef.current)
+            carouselObserver.observe(carouselContainerRef.current);
 
         return () => {
             headerObserver.disconnect();
             statsObserver.disconnect();
             imagesObserver.disconnect();
+            carouselObserver.disconnect();
         };
     }, []);
 
@@ -267,10 +287,14 @@ export default function AboutUs() {
                 </div>
             </div>
 
-            <div className="w-full lg:hidden">
+            <div ref={carouselContainerRef} className="w-full lg:hidden">
                 <div
                     ref={carouselRef}
-                    className="relative overflow-hidden"
+                    className={`relative overflow-hidden transition-all duration-400 ease-out ${
+                        carouselInView
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-8"
+                    }`}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
@@ -305,7 +329,16 @@ export default function AboutUs() {
                     </div>
                 </div>
 
-                <div className="flex justify-center gap-2 items-center mt-6">
+                <div
+                    className={`flex justify-center gap-2 items-center mt-6 transition-all duration-400 ease-out ${
+                        carouselInView
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-4"
+                    }`}
+                    style={{
+                        transitionDelay: carouselInView ? "200ms" : "0ms",
+                    }}
+                >
                     {[...Array(5)].map((_, i) => (
                         <button
                             key={i}
