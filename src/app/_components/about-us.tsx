@@ -35,14 +35,15 @@ const images = [
 ];
 
 export default function AboutUs() {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
     const [headerInView, setHeaderInView] = useState<boolean>(false);
     const [statsInView, setStatsInView] = useState<boolean>(false);
+    const [imagesInView, setImagesInView] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
 
     const headerRef = useRef<HTMLDivElement>(null);
     const statsRef = useRef<HTMLDivElement>(null);
+    const imagesRef = useRef<HTMLDivElement>(null);
 
     const goToSlide = (index: number) => {
         if (isTransitioning || index === currentIndex) return;
@@ -53,14 +54,6 @@ export default function AboutUs() {
 
     const currentImage = `/assets/about-us-${currentIndex + 1}.png`;
     const nextImage = images[(currentIndex + 1) % images.length];
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(true);
-        }, 300);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
         const headerObserver = new IntersectionObserver(
@@ -80,13 +73,23 @@ export default function AboutUs() {
             },
             { threshold: 0.2, rootMargin: "-100px 0px -100px 0px" }
         );
+        const imagesObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setImagesInView(true);
+                }
+            },
+            { threshold: 0.1, rootMargin: "-100px 0px -100px 0px" }
+        );
 
         if (headerRef.current) headerObserver.observe(headerRef.current);
         if (statsRef.current) statsObserver.observe(statsRef.current);
+        if (imagesRef.current) imagesObserver.observe(imagesRef.current);
 
         return () => {
             headerObserver.disconnect();
             statsObserver.disconnect();
+            imagesObserver.disconnect();
         };
     }, []);
 
@@ -144,18 +147,22 @@ export default function AboutUs() {
                 </div>
             </div>
 
-            <div className="lg:block hidden overflow-hidden">
-                <div className="flex items-center gap-8 animate-scroll">
+            <div ref={imagesRef} className="lg:block hidden overflow-hidden">
+                <div
+                    className={`flex items-center gap-8 ${
+                        imagesInView ? "animate-scroll" : ""
+                    }`}
+                >
                     {[...Array(5)].map((_, i) => (
                         <div
                             key={`first-${i}`}
                             style={{
                                 transitionDelay: `${(i % 5) * 200}ms`,
                             }}
-                            className={`relative w-[400px] h-[500px] aspect-[4/5] flex-shrink-0 transition-all duration-300 ease-out ${
-                                isVisible
-                                    ? "opacity-100 translate-x-0"
-                                    : "opacity-0 translate-x-[-100px]"
+                            className={`relative w-[400px] h-[500px] aspect-[4/5] flex-shrink-0 transition-all duration-400 ease-out ${
+                                imagesInView
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-8"
                             }`}
                         >
                             <Image
@@ -181,6 +188,7 @@ export default function AboutUs() {
                     ))}
                 </div>
             </div>
+
             <div className="w-full lg:hidden">
                 <div className="relative overflow-hidden">
                     <div
