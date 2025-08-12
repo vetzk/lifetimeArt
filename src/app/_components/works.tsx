@@ -47,18 +47,67 @@ export default function Works() {
     );
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
-
-    const goToSlide = (index: number) => {
-        if (isTransitioning || index === currentIndex) return;
-        setIsTransitioning(true);
-        setCurrentIndex(index);
-        setTimeout(() => setIsTransitioning(false), 300);
-    };
-
-    const currentWork = works[currentIndex];
+    const [isPaused, setIsPaused] = useState<boolean>(false);
+    const [carouselInView, setCarouselInView] = useState<boolean>(false);
 
     const headerRef = useRef<HTMLDivElement>(null);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
+    const carouselRef = useRef<HTMLDivElement>(null);
+
+    const AUTO_SLIDE_INTERVAL = 4000;
+
+    const goToSlide = (index: number) => {
+        if (isTransitioning || index === currentIndex) return;
+
+        setIsTransitioning(true);
+        setCurrentIndex(index);
+        setTimeout(() => {
+            setIsTransitioning(false);
+            setTimeout(() => {
+                setIsPaused(false);
+            }, 2000);
+        }, 300);
+    };
+
+    const handleMouseEnter = () => {
+        setIsPaused(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsPaused(false);
+    };
+
+    useEffect(() => {
+        const startAutoSlide = () => {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+            }
+
+            autoSlideRef.current = setInterval(() => {
+                if (!isPaused) {
+                    setIsTransitioning(true);
+
+                    setTimeout(() => {
+                        setCurrentIndex((prev) => (prev + 1) % works.length);
+                        setTimeout(() => {
+                            setIsTransitioning(false);
+                        }, 300);
+                    }, 150);
+                }
+            }, AUTO_SLIDE_INTERVAL);
+        };
+
+        startAutoSlide();
+
+        return () => {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+            }
+        };
+    }, [isPaused]);
+
+    const currentWork = works[currentIndex];
 
     useEffect(() => {
         const headerObserver = new IntersectionObserver(
@@ -69,6 +118,16 @@ export default function Works() {
             },
             { threshold: 0.3, rootMargin: "-50px 0px -50px 0px" }
         );
+
+        const carouselObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setCarouselInView(true);
+                }
+            },
+            { threshold: 0.2, rootMargin: "-100px 0px -100px 0px" }
+        );
+
         const cardObservers = cardRefs.current.map((cardRef, index) => {
             if (!cardRef) return null;
 
@@ -93,9 +152,11 @@ export default function Works() {
         });
 
         if (headerRef.current) headerObserver.observe(headerRef.current);
+        if (carouselRef.current) carouselObserver.observe(carouselRef.current);
 
         return () => {
             headerObserver.disconnect();
+            carouselObserver.disconnect();
             cardObservers.forEach((observer) => observer?.disconnect());
         };
     }, []);
@@ -358,7 +419,17 @@ export default function Works() {
                         </div>
                     </div>
                 ))}
-                <div className="w-full lg:hidden max-w-4xl mx-auto rounded-xl">
+                <div
+                    ref={carouselRef}
+                    className={`w-full lg:hidden max-w-4xl mx-auto rounded-xl transition-all duration-500 ease-out ${
+                        carouselInView
+                            ? "opacity-100 translate-y-0 scale-100"
+                            : "opacity-0 translate-y-8 scale-95"
+                    }`}
+                    style={{ transitionDelay: "200ms" }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <div className="relative overflow-hidden rounded-xl">
                         <div
                             className={`transition-all duration-300 ease-out ${
@@ -463,7 +534,14 @@ export default function Works() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center gap-2 items-center mt-6">
+                    <div
+                        className={`flex justify-center gap-2 items-center mt-6 transition-all duration-500 ease-out ${
+                            carouselInView
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-4"
+                        }`}
+                        style={{ transitionDelay: "400ms" }}
+                    >
                         {works.map((_, i) => (
                             <button
                                 key={i}

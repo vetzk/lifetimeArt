@@ -44,7 +44,7 @@ export default function Testimonials() {
     const headerRef = useRef<HTMLDivElement>(null);
     const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
 
-    const AUTO_SLIDE_INTERVAL = 2000;
+    const AUTO_SLIDE_INTERVAL = 4000;
 
     useEffect(() => {
         const headerObserver = new IntersectionObserver(
