@@ -64,9 +64,6 @@ export default function Works() {
         setCurrentIndex(index);
         setTimeout(() => {
             setIsTransitioning(false);
-            setTimeout(() => {
-                setIsPaused(false);
-            }, 2000);
         }, 300);
     };
 
@@ -421,7 +418,7 @@ export default function Works() {
                 ))}
                 <div
                     ref={carouselRef}
-                    className={`w-full lg:hidden max-w-4xl mx-auto rounded-xl transition-all duration-500 ease-out ${
+                    className={`w-full lg:hidden max-w-4xl mx-auto rounded-xl transition-all duration-400 ease-out ${
                         carouselInView
                             ? "opacity-100 translate-y-0 scale-100"
                             : "opacity-0 translate-y-8 scale-95"
@@ -535,7 +532,7 @@ export default function Works() {
                         </div>
                     </div>
                     <div
-                        className={`flex justify-center gap-2 items-center mt-6 transition-all duration-500 ease-out ${
+                        className={`flex justify-center gap-2 items-center mt-6 transition-all duration-400 ease-out ${
                             carouselInView
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-4"
